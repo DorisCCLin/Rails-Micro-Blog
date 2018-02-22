@@ -9,6 +9,14 @@
   </head>
 
   <body>
+
+    <nav>
+      <ul>
+        <li><a href="/users/new">SignUp</a></li>
+        <li><a href="/users">User List</a></li>
+      </ul>  
+    </nav>
+  	<%= flash[:message] if flash[:message] %>
     <%= yield %>
   </body>
 </html>

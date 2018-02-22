@@ -22,3 +22,11 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+User 
+  New: public
+  Create: username can't be the same
+          passworld can't be less than 6 characters
+  Show: logged_in
+  Update: logged_in
+  Delete: need to pop an alert

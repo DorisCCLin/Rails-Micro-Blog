@@ -1,0 +1,5 @@
+<h1>Users List</h1>
+
+<% @users.each do |u| %>
+<div><a href="/users/<%= u.id%>"><%= u.username %></a></div>
+<% end %>

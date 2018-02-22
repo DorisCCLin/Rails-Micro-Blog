@@ -1,0 +1,11 @@
+<h1>Users detail</h1>
+<div><%= @user.username %></div>
+<div><%= @user.email %></div>
+<div><a href="/users/<%=@user.id%>/edit">Edit</a></div>
+
+<!-- <div><a href="/users/<%=@user.id%>/delete">Delete</a></div> -->
+
+
+  <%= form_tag("/users/#{@user.id}/delete", method: "post") do %>
+    <%= submit_tag("Delete") %>
+  <% end %>
