@@ -23,10 +23,17 @@ Things you may want to cover:
 
 * ...
 
+Welcome
+
 User 
-  New: public
-  Create: username can't be the same
-          passworld can't be less than 6 characters
-  Show: logged_in
-  Update: logged_in
-  Delete: need to pop an alert
+  (P)New: public
+       (F)Create: username can't be the same
+                  password can't be less than 6 characters
+  (P)Show: logged_in
+       (P)Edit: logged_in
+            (F)Update: logged_in
+       (P)Delete: logged_in    
+            (F)Destroy: need to pop an alert
+  (P)Loggin 
+
+

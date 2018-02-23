@@ -5,7 +5,17 @@
 
 <!-- <div><a href="/users/<%=@user.id%>/delete">Delete</a></div> -->
 
-
-  <%= form_tag("/users/#{@user.id}/delete", method: "post") do %>
-    <%= submit_tag("Delete") %>
+<h2>update user</h2>
+ <%= form_for @user do |f| %>
+ Username:<%= f.text_field :username %><br>
+ Email:<%= f.text_field :email %><br>
+ Password:<%= f.text_field :password %><br>
+ <%= f.submit "save" %>
   <% end %>
+
+
+
+ <%= form_tag("/users/#{@user.id}/delete", method: "post") do %>
+    <%= submit_tag("Delete") %>
+ <% end %>
+

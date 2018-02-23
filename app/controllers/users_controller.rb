@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  before_action :authenticate, only: [:edit, :destroy, :show
+  ]
+  
   def index
   	@users = User.all  
   end
@@ -44,12 +47,24 @@ class UsersController < ApplicationController
   end
 
   def login
+    user = User.find_by_username(params[:username])
+    if user && user.authenticate(params[:password])
+      session[:user_id] = user.id 
+      flash[:message] = 'you logged in successfully'
+      redirect_to "/users/#{user.id}"
+    else 
+      flash[:message] = 'try again'
+      redirect_to '/login'
+    end
   end
 
   def logout
+    session[:user_id] = nil
+    flash[:message] = 'logging out ok'
+    redirect_to '/login'
   end
 
-  def login_form
+  def login_page
   end
 
 private

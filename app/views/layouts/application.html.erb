@@ -11,7 +11,14 @@
   <body>
 
     <nav>
-      <ul>
+    <% if logged_in? %>
+      <div>Howdy!<%= current_user.username %></div>
+      <div><%= link_to 'Log out', '/logout', {method: 'post'} %></div>
+    <%else%> 
+       <div><a href='/login'>Login</a></div>   
+    <% end %>
+
+    <ul>
         <li><a href="/users/new">SignUp</a></li>
         <li><a href="/users">User List</a></li>
       </ul>  
