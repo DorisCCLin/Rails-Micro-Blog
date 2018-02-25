@@ -17,7 +17,8 @@ class ApplicationController < ActionController::Base
   #filter
   def authenticate
   	if !logged_in?
-      redirect_to root_path
+      flash[:message] = 'please login'
+      redirect_to '/login'
     end 
   end
 

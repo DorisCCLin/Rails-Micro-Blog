@@ -3,7 +3,11 @@
 <div><%= @user.email %></div>
 <div><a href="/users/<%=@user.id%>/edit">Edit</a></div>
 
-<!-- <div><a href="/users/<%=@user.id%>/delete">Delete</a></div> -->
+
+<%= form_tag(user_path, method: "delete") do %>
+    <%= submit_tag("Delete Account") %>
+ <% end %>
+
 
 <h2>update user</h2>
  <%= form_for @user do |f| %>
@@ -14,8 +18,25 @@
   <% end %>
 
 
-
- <%= form_tag("/users/#{@user.id}/delete", method: "post") do %>
-    <%= submit_tag("Delete") %>
+<h2>Create a new post</h2>
+<%= form_for @post do |f|%>
+    <div><%= f.text_field :title,  placeholder: "title" %></div>
+    <div><%= f.text_area :content, placeholder: "content" %></div>
+    <div><%= f.text_field :tag, placeholder: "tag" %></div>
+    <div><%= f.submit("Create") %>
  <% end %>
+
+
+<h1>User's post</h1>
+
+<% @posts.each do |p| %> 
+<div><a href="/posts/<%=p.id%>"><%= p.title %></a></div>
+<div>--------------</div>
+<% end%>
+
+
+
+
+
+
 
