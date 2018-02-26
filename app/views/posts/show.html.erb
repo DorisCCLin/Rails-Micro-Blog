@@ -24,11 +24,22 @@
 <hr>
 
 <h2>create a comment</h2>
-<%= form_for @comment do |f|%>
+<%= form_for @comment, :url => comments_path, :method => 'post'  do |f|%>
     <div><%= f.text_area :message,  placeholder: "message" %></div>
     <%= f.hidden_field :user_id, :value => current_user.id %>
     <%= f.hidden_field :post_id, :value => @post.id %>
     <div><%= f.submit("Create comment") %>
  <% end %>
+
+<h2>comments:</h2>
+<% if @comments != [] %>
+   <% @comments.each do |c| %>
+   <div><%= c.message%></div>
+   
+   <%end%>
+<%else%>
+   <div>Be the first one to leave a comment!</div> 
+<%end%>
+
 
 

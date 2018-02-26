@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   root to: "welcome#welcome"
   resources :users 
   resources :posts
-  resources :comment
+  resources :comments
 
   # resources :posts do
   	
