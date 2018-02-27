@@ -1,44 +1,65 @@
 <h3>POST</h3>
 
 <div><%= @post.title %></div>
+<% @auther = User.find_by_id(@post.user_id)%>
+<div>by <a href="/users/<%=@auther.id%>"><%=@auther.username%></a></div>
+<div>at <%= @post.created_at%></div>
 <div><%= @post.content %></div>
 <div><%= @post.tag %></div>
 
 
-
+<% if current_user != nil %>
+<% if @post.user_id == current_user.id%>
 <h2>Update a new post</h2>
 <%= form_for @post, url: {action: "update"} do |f|%>
     <div><%= f.text_field :title,  placeholder: "title" %></div>
     <div><%= f.text_area :content, placeholder: "content" %></div>
     <div><%= f.text_field :tag, placeholder: "tag" %></div>
     <div><%= f.submit("Save Post") %>
+
  <% end %>
+
 
   <%= form_tag(post_path, method: "delete") do %>
     <%= submit_tag("Delete Post") %>
  <% end %>
-
-
- <%#= link_to 'Delete', post_path, method: :delete %>
+  <%end%>
+  <% end %>
 
 <hr>
-
-<h2>create a comment</h2>
-<%= form_for @comment, :url => comments_path, :method => 'post'  do |f|%>
-    <div><%= f.text_area :message,  placeholder: "message" %></div>
-    <%= f.hidden_field :user_id, :value => current_user.id %>
-    <%= f.hidden_field :post_id, :value => @post.id %>
-    <div><%= f.submit("Create comment") %>
+<% if current_user != nil %>
+  <h2>create a comment</h2>
+  <%= form_for @comment, :url => comments_path, :method => 'post'  do |f|%>
+      <div><%= f.text_area :message,  placeholder: "message" %></div>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <%= f.hidden_field :post_id, :value => @post.id %>
+      <div><%= f.submit("Create comment") %>
+   <% end %>
  <% end %>
 
 <h2>comments:</h2>
 <% if @comments != [] %>
-   <% @comments.each do |c| %>
-   <div><%= c.message%></div>
-   
-   <%end%>
-<%else%>
-   <div>Be the first one to leave a comment!</div> 
+  <% @comments.each do |c| %>
+    <div><%= c.message%></div>
+    <% @user = User.find_by_id(c.user_id)%>
+    <div>by <a href="/users/<%=@user.id%>"><%=@user.username%></a> at <%=c.created_at%></div>
+      <% if current_user != nil %>
+         <% if c.user_id == current_user.id %>
+            <%= form_for @comment, :url => "/comments/#{c.id}", :method => 'put'  do |f| %>
+                <div><%= f.text_area :message,  placeholder: "message" %></div>
+                     <%= f.hidden_field :user_id, :value => current_user.id %>
+                     <%= f.hidden_field :post_id, :value => @post.id %>
+                <div><%= f.submit("Save Comment") %></div>
+            <% end %>
+            <br/>
+            <%= form_tag("/comments/#{c.id}", method: "delete") do %>
+                <div><%= submit_tag("Delete Comment") %></div>
+            <% end %>    
+         <% end %>
+      <%end%>
+  <%end%>
+<% else %>
+  <div>Be the first one to leave a comment!</div> 
 <%end%>
 
 

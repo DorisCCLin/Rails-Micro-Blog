@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   end
 
 
-  helper_method :current_user, :logged_in?
+  helper_method :current_user, :current_comment, :logged_in?
   #help_method is for views to acess to the functions.
 
   def logged_in?

@@ -20,20 +20,16 @@ class CommentsController < ApplicationController
   end
 
   def update
-  	@comment = Comment.find(params[:id])
-    if @post.update(post_params)
-      flash[:message] = 'post edit ok'
-      redirect_to "/users/#{current_user.id}"
-    else
-      flash[:message] = 'try again'
-      redirect_to edit_post_path
-    end
+  	comment = Comment.find(params[:id])
+    comment.update(comment_params)
+    flash[:message] = 'comment edit ok'
+    redirect_to "/posts/#{comment.post_id}"  
   end 
 
   def destroy
-  	comment = Post.find(params[:id])
-    post.destroy
-    redirect_to root_path
+  	comment = Comment.find(params[:id])
+    comment.destroy
+    redirect_to "/posts/#{comment.post_id}" 
   end	
 
 
