@@ -1,0 +1,26 @@
+@import 'mixins';
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
+@import url('https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700');
+
+#login {
+  @include basic;
+  background-image: url('login.jpg'); 
+  background-size: cover;
+}
+
+.user_login{
+   @include formButton;
+   color: white;
+   background-color: MediumSeaGreen;
+}
+
+.user_login:hover{
+	background-color: MediumTurquoise;
+}
+
+.logout_flashMsg{
+	@include msg;
+	background-color: rgba(144, 238, 144, 0.9);
+    z-index:1;
+}
+

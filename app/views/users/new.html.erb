@@ -1,10 +1,32 @@
-
-<h2>Create a new User:</h2>
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+<div id='signup'>
+	<% if flash[:message] %>
+	<div class='flashMsg'><%= flash[:message] %>    <a href="./new">X</a></div>
+	<% end%>
+<div id='logo'>Clonblr</div>	
 
 <%= form_for @user do |f| %>
 
-Username:<%= f.text_field :username %><br>
-Email:<%= f.text_field :email %><br>
-Password:<%= f.text_field :password %><br>
-<%= f.submit %>
+
+<%= f.text_field :username, placeholder:'username', class: 'input'%><br>
+<%= f.text_field :email, placeholder:'email', class: 'input'%><br>
+<%= f.text_field :password, placeholder:'password', class: 'input'%><br>
+<%= f.submit'SignUp', :class => 'user_create'%>
 <% end %>
+
+<div class='corner'><a href="/login">Log In</a></div>
+
+</div>
+
+</body>
+</html>
+
+
+
+

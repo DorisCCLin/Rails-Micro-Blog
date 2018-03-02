@@ -1,0 +1,41 @@
+
+@import 'mixins';
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
+@import url('https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700');
+
+#signup {
+  @include basic;
+  background-image: url('cloudy-day.png'); 
+}
+
+#logo{
+   @include logo;
+}
+
+.input{
+   @include inputBox;
+}
+
+.user_create{
+   @include formButton;
+   color: white;
+   background-color: LightSlateGrey ;
+}
+
+.user_create:hover{
+	background-color: MidnightBlue  ;
+}
+
+.corner a:visited { 
+    color: dimgrey;
+}
+
+.corner{
+   @include cornerButton;
+}
+
+.flashMsg{
+   @include msg;
+   background-color: rgba(255, 182, 193, 0.9);
+   z-index:1;
+}

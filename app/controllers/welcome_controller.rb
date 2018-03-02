@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
   def show 
-  	render :layout => false 
+  	render :layout => false
   end
 
 end

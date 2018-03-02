@@ -22,7 +22,6 @@ class CommentsController < ApplicationController
   def update
   	comment = Comment.find(params[:id])
     comment.update(comment_params)
-    flash[:message] = 'comment edit ok'
     redirect_to "/posts/#{comment.post_id}"  
   end 
 

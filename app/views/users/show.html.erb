@@ -1,21 +1,30 @@
-<h1>Users detail</h1>
-<div><%= @user.username %></div>
-<div><%= @user.email %></div>
 
-<% if logged_in? %>
-  <%if current_user.id == @user.id %>
-    <h2>update user</h2>
-    <%= form_for @user do |f| %>
-    Username:<%= f.text_field :username %><br>
-    Email:<%= f.text_field :email %><br>
-    Password:<%= f.text_field :password %><br>
-    <%= f.submit "save" %>
-    <% end %>
+<div id='profileWapper'> 
+  <div class='profile_column' id='profile_info'>
+  <div><img src="../../assets/photo.png" width='200px' height="200px"></div>
+  <div><%= @user.username %></div>
+  <div><%= @user.email %></div>
 
-  <%= form_tag(user_path, method: "delete") do %>
-  <%= submit_tag("Delete Account") %>
-  <% end %>
-  
+
+    <% if logged_in? %>
+      <%if current_user.id == @user.id %>
+        <div id='update_user'><h2>update user</h2></div>
+        <div id='hidden_user_update'>
+        <%= form_for @user do |f| %>
+        Username:<%= f.text_field :username %><br>
+        Email:<%= f.text_field :email %><br>
+        Password:<%= f.text_field :password %><br>
+        <%= f.submit "save" %>
+        <% end %>
+
+      <%= form_tag(user_path, method: "delete") do %>
+      <%= submit_tag("Delete Account") %>
+      <% end %>
+    </div>
+</div>
+
+<div class='profile_column' id='profile_posts'>
+
   <h2>Create a new post</h2>
   <%= form_for @post do |f|%>
     <div><%= f.text_field :title,  placeholder: "title" %></div>
@@ -29,14 +38,18 @@
 <h1>User's post</h1>
 
 <% @posts.each do |p| %>
-<div><%= p.created_at %></a></div> 
+<div><%= p.created_at.strftime("%a, %b %d, %Y at :%H:%M %p") %></a></div> 
 <div><a href="/posts/<%=p.id%>"><%= p.title %></a></div>
 <div><%= p.content %></div>
 <div>--------------</div>
 <% end%>
 
+</div>
 
+<div class='profile_column' id='profile_comments'>
+</div>
 
+</div>
 
 
 

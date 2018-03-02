@@ -6,16 +6,17 @@ class UsersController < ApplicationController
   end
 
   def new
-  	@user = User.new
+    @user = User.new
+    render :layout => false	
   end
 
   def create
   	user = User.new(user_params) 	
     if User.find_by_username(user.username) != nil 
-      flash[:message] = 'try again'
+      flash[:message] = "This username belongs to someone else. Let's try somthing new?" 
       redirect_to new_user_path 
     elsif user.save
-  		flash[:message] = 'user created ok'
+  		flash[:message] = 'Yes, you got an account now!'
       session[:user_id] = user.id
   		redirect_to "/users/#{user.id}"
   	end
@@ -23,13 +24,8 @@ class UsersController < ApplicationController
 
   def show
       @user = User.find_by_id(params[:id])
-    # if current_user == nil 
-    #   flash[:message] = 'Please log in before accessing this page' 
-    #   redirect_to '/login' 
-    # else
       @post = Post.new
-      @posts = Post.where(user_id: params[:id])                  
-    # end           
+      @posts = Post.where(user_id: params[:id])                             
   end
 
   def edit
@@ -72,6 +68,7 @@ class UsersController < ApplicationController
   end
 
   def login_page
+    render :layout => false 
   end
 
 private
