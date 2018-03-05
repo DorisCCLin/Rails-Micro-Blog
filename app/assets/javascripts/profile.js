@@ -15,15 +15,17 @@ cancel_botton.addEventListener('click', function(){
 })
 
 
-var coll = document.getElementById("new_post");
+// var coll = document.getElementsByClassName("new_post");
+// var i;
 
-
-  coll.addEventListener("click", function() {
-    this.classList.toggle("active");
-    var content = this.nextElementSibling;
-    if (content.style.maxHeight){
-      content.style.maxHeight = null;
-    } else {
-      content.style.maxHeight = content.scrollHeight + "px";
-    } 
-  });
+// for (i = 0; i < coll.length; i++) {
+//   coll[i].addEventListener("click", function() {
+//     this.classList.toggle("active");
+//     var content = this.nextElementSibling;
+//     if (content.style.maxHeight){
+//       content.style.maxHeight = null;
+//     } else {
+//       content.style.maxHeight = content.scrollHeight + "px";
+//     } 
+//   });
+// }

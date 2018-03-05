@@ -37,8 +37,8 @@
     </div>
 
     <div class='profile_column' id='profile_posts'>
-      <div id='new_post'><img src="../../assets/edit.png" width='25px' height="25px">What's on your mind now?</div>
-      <div id='hidden_post_create'>
+      <div class='new_post'><img src="../../assets/plus.png" width='25px' height="25px">What's on your mind now?</div>
+      <div class='content'>
         <%= form_for @post do |f|%>
           <div><%= f.text_field :title,  placeholder: "title", class: 'post_new_input' %></div>
           <div><%= f.text_area :content, placeholder: "content", class: 'post_new_text' %></div>

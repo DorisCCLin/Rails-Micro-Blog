@@ -6,9 +6,9 @@
 
 #profileWapper{
 	width:100%;
-	height:700px;
+	height:auto;
 	background-image: url('wov.png');
-	overflow:hidden;
+	overflow: hidden;
 	font-family: 'Quicksand', sans-serif;
 }
 
@@ -37,7 +37,7 @@ transform: translateY(0.2vmax);
 
 
 #hidden_user_update{
-	visibility: visible;
+	visibility: hidden;
 	width: 100%;
 	height:100%;
 	position:fixed;
@@ -173,11 +173,8 @@ transform: translateY(0.2vmax);
 transform: translateY(0.2vmax);
 }
 
-.active{
-	background-color: rgba(255, 250, 205,0.7);
-}
 
-#new_post{
+.new_post{
 	// background-color: rgba(255, 250, 205,0.7);
     cursor: pointer;
     padding-top: 10px;
@@ -190,13 +187,17 @@ transform: translateY(0.2vmax);
     font-size: 15px;
 }
 
-#hidden_post_create {
-	background-color: rgba(255, 250, 205,0.7);
-	width: 100%;
-    padding: 0 18px;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.2s ease-out;
+.active, .new_post:hover {
+    background-color: #fff;
+}
+
+.content {
+	// background-color: rgba(255, 250, 205,0.7);
+	// width: 100%;
+ //    padding: 0 18px;
+ //    max-height: 0;
+ //    overflow: hidden;
+ //    transition: max-height 0.2s ease-out;
 }
 
 .post_new_input, .post_new_tag{

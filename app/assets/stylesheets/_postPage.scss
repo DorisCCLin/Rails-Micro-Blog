@@ -1,0 +1,54 @@
+#postPage_wrapper{
+	width:100%;
+	height: auto;
+	background-image: url('wov.png');
+	overflow:hidden;
+	font-family: 'Quicksand', sans-serif;
+
+}
+
+#postPage_column{
+	margin-top:130px;
+	margin-left:150px;
+	width: 70%;
+	float: left;
+}
+
+#article_title{
+	font-size: 50px;
+	font-weight: 700;
+}
+
+#article_meda{
+	color: grey;
+	margin-bottom:20px;
+	font-size: 14px;
+}
+
+#article_meda a:visited { 
+    color: grey;
+}
+
+#article_text{
+	margin-bottom:10px;
+}
+
+#article_tag{
+	margin-bottom:10px;
+	color: grey;
+}
+
+#article_edit_form{
+	display:none;
+	float:right;
+}
+
+#comment_create_form{
+	display:none;
+}
+
+
+
+
+
+

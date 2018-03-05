@@ -24,8 +24,14 @@ class UsersController < ApplicationController
 
   def show
       @user = User.find_by_id(params[:id])
-      @post = Post.new
-      @posts = Post.where(user_id: params[:id])                             
+      if @user != nil
+         @post = Post.new
+         @posts = Post.where(user_id: params[:id])
+         
+      else 
+         redirect_to '/login' 
+      
+      end                             
   end
 
   def edit
