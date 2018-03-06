@@ -76,8 +76,15 @@ a:link {
 	line-height:45px;
 }
 
+#loginButton:hover{
+	background-color: grey;
+}
 
-
+#signinButton:hover{
+	background-color: black;
+	color: white;
+	border: 1px solid white;
+}
 
 
 

@@ -8,48 +8,55 @@
 <div id='article_tag'>tags: <%= @post.tag %></div>
 <div id='article_update_icon' align='right'><img src="../../assets/edit.png" width='20px' height="20px"></div>
 
-
+<div id='edit_form_wrapper' >
 <% if current_user != nil %>
    <% if @post.user_id == current_user.id%>      
       <div id='article_edit_form' >
-        <h2>Update a new post</h2>
-        <%= form_for @post, url: {action: "update"} do |f|%>
-      <div><%= f.text_field :title,  placeholder: "title" %></div>
-      <div><%= f.text_area :content, placeholder: "content" %></div>
-      <div><%= f.text_field :tag, placeholder: "tag" %></div>
-      <div><%= f.submit("Save Post") %></div>
-      <% end %>
-      <%= form_tag(post_path, method: "delete") do %>
-      <%= submit_tag("Delete Post") %>
-      <% end %>
-    </div>
+        <div id='article_edit'>
+          <h2>Update the post:</h2>
+          <br>
+          <%= form_for @post, url: {action: "update"} do |f|%><div><%= f.text_field :title,  placeholder: "title", class: 'post_edit_input' %></div>
+          <div><%= f.text_area :content, placeholder: "content", class: 'post_new_text' %></div>
+          <div><%= f.text_field :tag, placeholder: "tag", class: 'post_edit_input' %></div>
+          <div><%= f.submit("Save Post", class: 'post_edit_botton') %></div>
+          <% end %>
+          <%= form_tag(post_path, method: "delete") do %>
+          <%= submit_tag("Delete Post", class: 'post_delete_botton') %>
+          <% end %>
+          <div id='cancel_edit_botton'>Cancel</div>
+        </div>
+      </div>
    <%end%>
 <% end %>
+</div>
 
+<br>
 <hr>
+<br>
 
-<div id='comment_create_icon' align='right'><img src="../../assets/plus.png" width='20px' height="20px"></div>
+<div id='comment_create_icon' align='right'><img src="../../assets/plus.png" width='20px' height="20px">    create a comment</div>
+<div id='comment_count' align='right'><%=@comments.length%> comments</div>
+<br>
 <% if current_user != nil %>
-<div id='comment_create_form' >
-  <h2>create a comment</h2>
+  <div id='comment_create_form'>  
   <%= form_for @comment, :url => comments_path, :method => 'post'  do |f|%>
-      <div><%= f.text_area :message,  placeholder: "message" %></div>
-      <%= f.hidden_field :user_id, :value => current_user.id %>
-      <%= f.hidden_field :post_id, :value => @post.id %>
-      <div><%= f.submit("Create comment") %></div>
-   <% end %>
+  <div><%= f.text_area :message,  placeholder: "message", class: 'comment_new_text' %></div>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+  <%= f.hidden_field :post_id, :value => @post.id %>
+  <div><%= f.submit("Create comment") %></div>
+  <% end %>
  </div>
- <% end %>
+<% end %>
 
 
-<div><%=@comments.length%> comments</div>
+<br>
 
 <h2>comments:</h2>
 <% if @comments != [] %>
   <% @comments.each do |c| %>
-    <div><%= c.message%></div>
+  <div class='comment_text'><em><%= c.message%></em></div>
     <% @user = User.find_by_id(c.user_id)%>
-    <div>by <a href="/users/<%=@user.id%>"><%=@user.username%></a> at <%=c.created_at%></div>
+    <div class='comment_meta'>by <a href="/users/<%=@user.id%>"><%=@user.username%></a> at <%=c.created_at.strftime("%a, %b %d, %Y")%></div>
       <% if current_user != nil %>
          <% if c.user_id == current_user.id %>
             <%= form_for @comment, :url => "/comments/#{c.id}", :method => 'put'  do |f| %>
@@ -71,4 +78,6 @@
 
 </div>
 </div>
+
+<script type="text/javascript" src="javascript/post.js"></script>
 
