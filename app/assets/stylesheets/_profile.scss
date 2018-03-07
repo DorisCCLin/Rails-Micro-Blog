@@ -204,7 +204,8 @@ transform: translateY(0.2vmax);
 	width: 100%;
     padding: 0 18px;
     max-height: 0;
-    overflow: hidden;
+    height: 80vmax;
+    overflow: auto;
     transition: max-height 0.2s ease-out;
 }
 

@@ -6,7 +6,7 @@ var cancel_botton = document.getElementById('cancel_botton');
 
 if(update_user) {
 update_user.addEventListener('click', function(){
-	hidden_user_update.style.visibility = 'visible';
+  hidden_user_update.style.visibility = 'visible';
 });
 }
 

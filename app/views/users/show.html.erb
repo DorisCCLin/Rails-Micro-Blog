@@ -41,7 +41,7 @@
       <div class='content'>
         <%= form_for @post do |f|%>
           <div><%= f.text_field :title,  placeholder: "title", class: 'post_new_input' %></div>
-          <div><%= f.text_area :content, placeholder: "content", class: 'post_new_text' %></div>
+          <div><%= f.text_area :content, placeholder: "content",style: 'width:80%; height:30vh;', class: 'post_new_text' %></div>
           <div><%= f.text_field :tag, placeholder: "tag", class: 'post_new_tag' %></div>
           <div><%= f.submit'Create', class: 'post_create_botton' %></div>
         <% end %>
