@@ -9,29 +9,28 @@
   </head>
 
   <body>
-
     <nav>
-
       <div id='logo_small'>Clonblr</div>
       <% if logged_in? %>       
-         <div class='hello'>Howdy! <%= current_user.username %></div>
-          <ul>
-        
-        <li><%= link_to image_tag('logout.png', size: "25x25"), logout_path, {method: 'post'} %></li>
-        <li><a href="/users/<%=current_user.id%>"><img src="../../assets/user.png" height="25" width="25"/></a></li>
-        <%else%> 
-        <li><a href='/login'>Login</a></li>
-         <% end %>
-<!-- 
-        <li><a href="/users/new">SignUp</a></li>
-        <li><a href="/users">User List</a></li> -->
+        <div class='hello'>Howdy! <%= current_user.username %></div>
+        <ul>
+          <li><%= link_to image_tag('logout.png', size: "25x25"), logout_path, {method: 'post'} %></li>
+          <li><a href="/users/<%=current_user.id%>"><img src="../../assets/user.png" height="25" width="25"/></a></li>
+        </ul>   
+      <%else%>
+        <ul> 
+          <div class='login_post'><li><a href='/login'>Login</a></li></div>
+        </ul>  
+      <% end %>
+      <div>
+      <ul> 
         <li><a href="/posts"><img src="../../assets/list.png" height="25" width="25"/></a></li>
-      </ul>  
+      </ul>
+    </div>
     </nav>
     <% if flash[:message] %>
-    <div class='navbar_flashMsg'><%= flash[:message] %></div>
+      <div class='navbar_flashMsg'><%= flash[:message] %></div>
     <% end%>
     <%= yield %>
-
   </body>
 </html>

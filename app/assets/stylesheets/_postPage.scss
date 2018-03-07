@@ -7,6 +7,15 @@
 	font-family: 'Quicksand', sans-serif;
     overflow: auto;
 }
+#not_here{
+	margin-top:130px;
+	margin-left:180px;
+	width: 70%;
+	float: left;
+	font-size: 30px;
+	font-weight: 700;
+
+}
 
 #postPage_column{
 	margin-top:130px;
@@ -15,7 +24,7 @@
 	float: left;
 }
 
-#article_title{
+#article_title,{
 	font-size: 50px;
 	font-weight: 700;
 }
@@ -67,17 +76,33 @@
 #article_edit{
    position: relative;
    top: 30px;
-   left: 60px;
-   
+   left: 60px; 
+}
+
+#article_update_icon{
+   margin-bottom:1vh;
+   cursor: pointer;
 }
 
 #comment_create_form{
-	display:block;
+	display:none;
 }
 
 #comment_create_icon{
-	float:left;
-	margin-right:10px;
+	font-size:20px;
+	height:50px;
+	// margin-right:10px;
+	vertical-align: top;
+	display:inline-block;
+}
+#comment_create_gear{
+	cursor: pointer;
+	height:25px;
+	// vertical-align: center;
+}
+
+#comment_count{
+   color:grey;
 }
 
 .post_edit_input{
@@ -129,9 +154,40 @@
 	color: grey;
 	margin-bottom:20px;
 	font-size: 14px;
-
 }
 
-.comment_new_text{
-	float: left;
+.comment_new_text, .comment_update_text{
+	@include inputBox;
+	width:45vw;
+	height:20vh;
+	resize:none;
+	text-align: bottom;	
 }
+
+.new_comment_form, .update_comment_botton{
+	display: inline-block;
+}
+
+.comment_new_save, .comment_update_save, .comment_delete{
+	// height:20vh;
+	@include formButton;
+	width:150px;
+	vertical-align:bottom;
+	background-color:green;
+	color: white;
+}
+
+.comment_delete{
+	background-color:red;
+	}
+
+.comment_update_form{
+	display: none;
+}
+
+.comment_update_icon:hover{
+	cursor: pointer;
+}
+
+
+

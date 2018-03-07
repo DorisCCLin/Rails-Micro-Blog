@@ -17,6 +17,18 @@ nav {
 	line-height:10vh;
 	vertical-align:center;
 	background-color: rgba(	250,235,215,0.4);
+	font-family: 'Quicksand', sans-serif;
+	font-weight: 500;
+}
+
+.login_post{
+	line-height: 50px;
+	// margin-top: 5vh;
+    vertical-align:center;
+}
+
+.login_post a:visited { 
+    color: dimgrey;
 }
 
 ul {

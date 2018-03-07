@@ -1,83 +1,88 @@
 
 <div id='postPage_wrapper'>
-<div id='postPage_column'>
-<div id='article_title'><%= @post.title %></div>
-<% @auther = User.find_by_id(@post.user_id)%>
-<div id='article_meda'>by <a href="/users/<%=@auther.id%>"><%=@auther.username%></a> at <i><%= @post.created_at.strftime("%a, %b %d, %Y")%></i></div>
-<div id='article_text'><%= @post.content %></div>
-<div id='article_tag'>tags: <%= @post.tag %></div>
-<div id='article_update_icon' align='right'><img src="../../assets/edit.png" width='20px' height="20px"></div>
-
-<div id='edit_form_wrapper' >
-<% if current_user != nil %>
-   <% if @post.user_id == current_user.id%>      
-      <div id='article_edit_form' >
-        <div id='article_edit'>
-          <h2>Update the post:</h2>
-          <br>
-          <%= form_for @post, url: {action: "update"} do |f|%><div><%= f.text_field :title,  placeholder: "title", class: 'post_edit_input' %></div>
-          <div><%= f.text_area :content, placeholder: "content", class: 'post_new_text' %></div>
-          <div><%= f.text_field :tag, placeholder: "tag", class: 'post_edit_input' %></div>
-          <div><%= f.submit("Save Post", class: 'post_edit_botton') %></div>
-          <% end %>
-          <%= form_tag(post_path, method: "delete") do %>
-          <%= submit_tag("Delete Post", class: 'post_delete_botton') %>
-          <% end %>
-          <div id='cancel_edit_botton'>Cancel</div>
-        </div>
-      </div>
-   <%end%>
-<% end %>
-</div>
-
-<br>
-<hr>
-<br>
-
-<div id='comment_create_icon' align='right'><img src="../../assets/plus.png" width='20px' height="20px">    create a comment</div>
-<div id='comment_count' align='right'><%=@comments.length%> comments</div>
-<br>
-<% if current_user != nil %>
-  <div id='comment_create_form'>  
-  <%= form_for @comment, :url => comments_path, :method => 'post'  do |f|%>
-  <div><%= f.text_area :message,  placeholder: "message", class: 'comment_new_text' %></div>
-  <%= f.hidden_field :user_id, :value => current_user.id %>
-  <%= f.hidden_field :post_id, :value => @post.id %>
-  <div><%= f.submit("Create comment") %></div>
-  <% end %>
- </div>
-<% end %>
-
-
-<br>
-
-<h2>comments:</h2>
-<% if @comments != [] %>
-  <% @comments.each do |c| %>
-  <div class='comment_text'><em><%= c.message%></em></div>
-    <% @user = User.find_by_id(c.user_id)%>
-    <div class='comment_meta'>by <a href="/users/<%=@user.id%>"><%=@user.username%></a> at <%=c.created_at.strftime("%a, %b %d, %Y")%></div>
+  <% if @post != nil%>
+    <div id='postPage_column'>
+      <div id='article_title'><%= @post.title %></div>
+      <% @auther = User.find_by_id(@post.user_id)%>
+      <div id='article_meda'>by <a href="/users/<%=@auther.id%>"><%=@auther.username%></a> at <i><%= @post.created_at.strftime("%a, %b %d, %Y")%></i></div>
+      <div id='article_text'><%= @post.content %></div>
+      <div id='article_tag'>tags: <%= @post.tag %></div>
       <% if current_user != nil %>
-         <% if c.user_id == current_user.id %>
-            <%= form_for @comment, :url => "/comments/#{c.id}", :method => 'put'  do |f| %>
-                <div><%= f.text_area :message,  placeholder: "message" %></div>
-                     <%= f.hidden_field :user_id, :value => current_user.id %>
-                     <%= f.hidden_field :post_id, :value => @post.id %>
-                <div><%= f.submit("Save Comment") %></div>
-            <% end %>
-            <br/>
-            <%= form_tag("/comments/#{c.id}", method: "delete") do %>
-                <div><%= submit_tag("Delete Comment") %></div>
-            <% end %>    
-         <% end %>
+        <% if @post.user_id == current_user.id%> 
+          <div><img id='article_update_icon' src="../../assets/edit.png" width='25px' height="25px"></div>
+          <div id='edit_form_wrapper' >           
+            <div id='article_edit_form' >
+              <div id='article_edit'>
+                <h2>Update the post:</h2>
+                <br>
+                <%= form_for @post, url: {action: "update"} do |f|%>
+                  <div><%= f.text_field :title,  placeholder: "title", class: 'post_edit_input' %></div>
+                  <div><%= f.text_area :content, placeholder: "content", class: 'post_new_text' %></div>
+                  <div><%= f.text_field :tag, placeholder: "tag", class: 'post_edit_input' %></div>
+                  <div><%= f.submit("Save Post", class: 'post_edit_botton') %></div>
+                <% end %>
+                <%= form_tag(post_path, method: "delete") do %>
+                  <%= submit_tag("Delete Post", class: 'post_delete_botton') %>
+                <% end %>
+                <div id='cancel_edit_botton'>Cancel</div>
+              </div>
+            </div>
+          </div>
+        <%end%>
+      <% end %>
+      <br>
+      <div id='comment_count' align='right'><i><%=@comments.length%> comments</i></div>
+      <hr>
+      <br>
+    
+    
+    <% if current_user != nil %>
+      <img id='comment_create_gear' src="../../assets/plus.png" width='25px' height="25px">
+      <div id='comment_create_icon'>
+            create a comment
+      </div>
+      <br>
+      <div id='comment_create_form'>  
+        <%= form_for @comment, :url => comments_path, :method => 'post'  do |f|%>
+          <div class='new_comment_form'><%= f.text_area :message,  placeholder: "message", class: 'comment_new_text' %></div>
+          <%= f.hidden_field :user_id, :value => current_user.id %>
+          <%= f.hidden_field :post_id, :value => @post.id %>
+          <div class='new_comment_form'><%= f.submit("Create comment", class: 'comment_new_save' ) %></div>
+        <% end %>
+      </div>
+    <% end %>
+    <br>
+    <h2>comments:</h2>
+    <% if @comments != [] %>
+      <% @comments.each do |c| %>
+        <div class='comment_text'><em><%= c.message%></em></div>
+        <% @user = User.find_by_id(c.user_id)%>
+        <div class='comment_meta'>by <a href="/users/<%=@user.id%>"><%=@user.username%></a> at <%=c.created_at.strftime("%a, %b %d, %Y")%> </div>
+        <% if current_user != nil %>
+          <% if c.user_id == current_user.id %>
+            <img class='comment_update_icon' src="../../assets/edit.png" width='25px' height="25px">
+            <div class='comment_update_form'>
+              <%= form_for @comment, :url => "/comments/#{c.id}", :method => 'put'  do |f| %>
+                <div class= 'update_comment_botton'><%= f.text_area :message,  placeholder: "message", class: 'comment_update_text' %></div>
+                <%= f.hidden_field :user_id, :value => current_user.id %>
+                <%= f.hidden_field :post_id, :value => @post.id %>
+                <div class= 'update_comment_botton'><%= f.submit("Save Comment", class: 'comment_update_save') %></div>
+                <%= form_tag("/comments/#{c.id}", method: "delete") do %>
+                  <div class= 'update_comment_botton'><%= submit_tag("Delete Comment", class: 'comment_delete') %></div>  
+                <% end %>    
+              <% end %>              
+            </div>    
+          <% end %>
+        <%end%>
       <%end%>
+    <% else %>
+      <div>Be the first one to leave a comment!</div> 
+    <%end%>
+    </div>
+  <%else%>
+    <div id='not_here'>Opps, this post is not here anymore.</div>
   <%end%>
-<% else %>
-  <div>Be the first one to leave a comment!</div> 
-<%end%>
-
-</div>
 </div>
 
-<script type="text/javascript" src="javascript/post.js"></script>
+<script type="text/javascript" src="/assets/post.js"></script>
 
