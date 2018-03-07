@@ -1,0 +1,76 @@
+@import 'mixins';
+
+*{
+	// border: 1px solid red;
+}
+
+.postInx_wrapper{
+
+	width:100%;
+	height: 100vh;
+	background-image: url('wov.png');
+	font-family: 'Quicksand', sans-serif;
+    overflow: auto;
+}
+
+.postInx_block{
+	margin-top: 150px;	
+}
+
+.postInx_list{
+	margin: 0px auto;
+	padding:30px auto;
+	width:100%;
+	height:100vh;
+	// text-align:center;
+}
+
+.postInx_each{
+	display: inline-block;
+    // height: 75px;
+    margin-left: 55px;
+    margin-bottom: 30px;
+	background-color: FloralWhite ;
+	// display: inline-box;
+	// text-algin: left;
+	vertical-align: top;
+	padding:15px;
+	width:25%;
+	height:25vh;
+	border-radius: 10px;
+	// margin: 10px;
+	// margin:0px auto;
+}
+
+.postInx_title{
+font-size:30px;
+	font-weight:700;
+}
+
+.postInx_each a:visited { 
+    color: black;
+}
+
+.postInx_meta {
+	color: grey;
+	margin-bottom:5px;
+	font-size: 14px;
+}
+
+.postInx_content{
+	color:grey;
+	margin-top:20px;
+	margin-bottom:30px;
+	font-weight:300;
+	display: block;
+    display: -webkit-box;
+    height: 45px;
+    margin: 0 auto 20px;
+    font-size: 20px;
+    line-height: 1.1;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    // max-width: 500px;   
+}

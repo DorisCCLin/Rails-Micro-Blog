@@ -1,0 +1,8 @@
+@import 'mixins';
+
+@import 'postPage';
+@import 'postIndex';
+
+::placeholder { 
+    color: grey;
+}

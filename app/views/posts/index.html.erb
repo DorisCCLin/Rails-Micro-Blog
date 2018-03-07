@@ -1,5 +1,20 @@
-<h1>Posts List</h1>
-
+<div class='postInx_wrapper'>
+<div class='postInx_block'>
+<div class='postInx_list'>	
 <% @posts.each do |p| %>
-<div><a href="/posts/<%=p.id%>"><%= p.title %></a></div>
+    <div class='postInx_each'>
+    	<a href="/posts/<%=p.id%>">
+	    <a href="/posts/<%=p.id%>">
+	        <div class='postInx_title'><%= p.title %></div>
+	    </a>
+	    <% @auther = User.find_by_id(p.user_id)%>
+	    <div class='postInx_meta'>by 
+	    	<a href="/users/<%=@auther.id%>"><%= @auther.username %></a> at <i><%= p.created_at.strftime("%a, %b %d, %Y")%></i>
+	    </div>
+	    <div class='postInx_content'><%= p.content %></div>
+	</a>
+	</div>
 <% end %>
+</div>
+</div>
+</div>

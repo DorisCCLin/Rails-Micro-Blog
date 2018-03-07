@@ -17,7 +17,7 @@
                 <br>
                 <%= form_for @post, url: {action: "update"} do |f|%>
                   <div><%= f.text_field :title,  placeholder: "title", class: 'post_edit_input' %></div>
-                  <div><%= f.text_area :content, placeholder: "content", class: 'post_new_text' %></div>
+                  <div><%= f.text_area :content, placeholder: "content", style: 'width:80%; height:30vh;', class: 'post_new_text' %></div>
                   <div><%= f.text_field :tag, placeholder: "tag", class: 'post_edit_input' %></div>
                   <div><%= f.submit("Save Post", class: 'post_edit_botton') %></div>
                 <% end %>
@@ -30,8 +30,9 @@
           </div>
         <%end%>
       <% end %>
-      <br>
+      
       <div id='comment_count' align='right'><i><%=@comments.length%> comments</i></div>
+      <br>
       <hr>
       <br>
     
@@ -60,23 +61,27 @@
         <div class='comment_meta'>by <a href="/users/<%=@user.id%>"><%=@user.username%></a> at <%=c.created_at.strftime("%a, %b %d, %Y")%> </div>
         <% if current_user != nil %>
           <% if c.user_id == current_user.id %>
-            <img class='comment_update_icon' src="../../assets/edit.png" width='25px' height="25px">
+            <div><img class='comment_update_icon' src="../../assets/edit.png" width='25px' height="25px"></div>
             <div class='comment_update_form'>
               <%= form_for @comment, :url => "/comments/#{c.id}", :method => 'put'  do |f| %>
-                <div class= 'update_comment_botton'><%= f.text_area :message,  placeholder: "message", class: 'comment_update_text' %></div>
-                <%= f.hidden_field :user_id, :value => current_user.id %>
-                <%= f.hidden_field :post_id, :value => @post.id %>
-                <div class= 'update_comment_botton'><%= f.submit("Save Comment", class: 'comment_update_save') %></div>
-                <%= form_tag("/comments/#{c.id}", method: "delete") do %>
-                  <div class= 'update_comment_botton'><%= submit_tag("Delete Comment", class: 'comment_delete') %></div>  
-                <% end %>    
-              <% end %>              
+                <div class='update_comment_field'>
+                  <%= f.text_area :message, class: 'comment_update_text' %>
+                  <%= f.hidden_field :user_id, :value => current_user.id %>
+                  <%= f.hidden_field :post_id, :value => @post.id %>
+                </div>
+                <div class= 'update_comment_field'>
+                  <%= f.submit("Save Comment", class: 'comment_update_save') %>
+                  <% end %> 
+                  <%= form_tag("/comments/#{c.id}", method: "delete") do %>
+                  <%= submit_tag("Delete Comment", class: 'comment_delete') %>                        
+                  <% end %>
+                </div>             
             </div>    
           <% end %>
         <%end%>
       <%end%>
     <% else %>
-      <div>Be the first one to leave a comment!</div> 
+      <div>Be the first one to leave a comment! <a href="/login"><i><u>  Login here</u></i><a></div> 
     <%end%>
     </div>
   <%else%>

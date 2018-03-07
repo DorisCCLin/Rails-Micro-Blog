@@ -84,6 +84,18 @@
    cursor: pointer;
 }
 
+#article_update_icon:hover{
+transform: translateY(0.2vmax);
+}
+
+#comment_create_gear:hover{
+transform: translateY(0.2vmax);
+}
+
+#comment_create_gear:hover{
+transform: translateY(0.2vmax);
+}
+
 #comment_create_form{
 	display:none;
 }
@@ -111,12 +123,11 @@
 }
 
 .post_new_text{
-	@include inputBox;
-	width:80%;
-	height:30vh;
-    resize: vertical;
-    line-height:20px;
 
+// 	// width:30vw;
+// 	// height:30vh;
+//  //    resize: vertical;
+//  //    line-height:20px;
 }
 
 .post_delete_botton{
@@ -164,7 +175,7 @@
 	text-align: bottom;	
 }
 
-.new_comment_form, .update_comment_botton{
+ .update_comment_field{
 	display: inline-block;
 }
 
@@ -187,6 +198,7 @@
 
 .comment_update_icon:hover{
 	cursor: pointer;
+	transform: translateY(0.2vmax);
 }
 
 

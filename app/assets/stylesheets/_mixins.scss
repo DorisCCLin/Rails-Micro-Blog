@@ -87,7 +87,19 @@
     line-height:50px;
     vertical-align:center;
     font-family: 'Quicksand', sans-serif;
-    font-weight: regular;    
+    font-weight: regular;
+    animation: fadeinout 4s;
+    // animation-iteration-count: 1;
+    visibility: hidden;
+  // opacity: 0;     
+}
+
+@keyframes fadeinout {
+  0% {opacity: 1; visibility: visible;}
+  50% {opacity: 1; visibility: visible;}
+  100% {opacity: 0; visibility: hidden;}
+  // 80% {opacity: 1;}
+  // 100% {opacity: 0; visibility: hidden;}
 }
 
 
